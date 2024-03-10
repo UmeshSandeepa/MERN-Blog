@@ -27,7 +27,7 @@ export default function OAuth() {
       const data = await res.json();
       if (res.ok) {
         dispatch(signInSuccess(data));
-        navigate("/Home");
+        navigate("/");
       }
     } catch (error) {
       console.log(error);
