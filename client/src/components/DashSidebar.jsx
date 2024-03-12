@@ -1,7 +1,7 @@
 import { Sidebar, SidebarItem, SidebarItemGroup } from "flowbite-react";
 import { useEffect, useState } from "react";
-import { HiArrowSmRight, HiUser } from "react-icons/hi";
-import { useDispatch } from "react-redux";
+import { HiArrowSmRight, HiDocumentText, HiUser } from "react-icons/hi";
+import { useDispatch, useSelector } from "react-redux";
 import { Link, useLocation } from "react-router-dom";
 import { signoutSuccess } from "../redux/user/userSlice";
 import { useNavigate } from "react-router-dom";
@@ -9,6 +9,7 @@ import { useNavigate } from "react-router-dom";
 export default function DashSidebar() {
   const location = useLocation();
   const dispatch = useDispatch();
+  const {currentUser} = useSelector(state => state.user)
   const navigate = useNavigate();
   const [tab, setTab] = useState("");
   useEffect(() => {
@@ -38,18 +39,28 @@ export default function DashSidebar() {
 
   return (
     <Sidebar className="w-full md:w-56">
-      <SidebarItemGroup>
+      <SidebarItemGroup className=" flex flex-col gap-1">
+
         <Link to="/dashboard?tab=profile">
           <SidebarItem
             active={tab === "profile"}
             icon={HiUser}
-            label={"User"}
+            label={currentUser.isAdmin ? 'Admin' : 'User'}
             labelColor="dark"
             as="div"
           >
             Profile
           </SidebarItem>
         </Link>
+
+        {currentUser.isAdmin && (
+          <Link to="/dashboard?tab=posts">
+          <SidebarItem active={tab === "posts"} icon={HiDocumentText} as="div">
+            Post
+          </SidebarItem>
+        </Link>
+        )}
+
         <SidebarItem
           active
           icon={HiArrowSmRight}
