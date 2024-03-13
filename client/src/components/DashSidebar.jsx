@@ -62,7 +62,7 @@ export default function DashSidebar() {
         )}
 
         <SidebarItem
-          active
+          
           icon={HiArrowSmRight}
           className="cursor-pointer"
           onClick={handleSignOut}
