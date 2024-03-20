@@ -20,7 +20,7 @@ const userSchema = new mongoose.Schema(
     profilePicture: {
       type: String,
       default:
-        "https://cdn.pixabay.com/photo/2015/10/05/22/37/blank-profile-picture-973460_960_720.png",
+        "https://static.vecteezy.com/system/resources/previews/008/442/086/non_2x/illustration-of-human-icon-user-symbol-icon-modern-design-on-blank-background-free-vector.jpg",
     },
     isAdmin:{
       type: Boolean,
